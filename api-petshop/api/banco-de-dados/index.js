@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize')
 
+
 const instancia = new Sequelize(
     'petshop',  //nome db
     'roots',    //usuario mysql
