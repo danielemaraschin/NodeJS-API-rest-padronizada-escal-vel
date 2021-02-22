@@ -2,12 +2,16 @@
 // quando for trabalhar em producao ou em outro computador só precisa sobre-escrever os dados nesse arquivo
 //pode tirar essas informações do código por que estao todas armazenadas aqui
 
-
 {                                            // será um objeto
     "mysql": {                               //com outro objeto dentro
         "banco-de-dados": "petshop",
         "usuario": "root",
         "senha" :"123456" , 
         "host": "127.0.0.1"
+    },
+
+    "api": {
+        "porta": 3000
     }
+
 }
