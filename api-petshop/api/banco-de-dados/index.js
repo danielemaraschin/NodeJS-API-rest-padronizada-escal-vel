@@ -3,12 +3,12 @@ const config = require('config')
 
 
 const instancia = new Sequelize(
-    'petshop',  //nome db
-    'roots',    //usuario mysql
-    '123456',   //senha de teste
+    config.get('mysql.banco-de-dados'),  //nome db
+    config.get(' mysql.usuario'),    //usuario mysql
+    config.get(' mysql.senha'),   //senha de teste
     {             //objeto para passar outras config na nossa conexão
-        host: '127.0.0.1',        //ipe da maquina q estamos usando
-        dialect: 'mysql'
+        host: config.get('mysql.host'),        //ipe da maquina q estamos usando
+        dialect: 'mysql'        //qual eh o tipo de db que está trabalhando
     }
 )
 
