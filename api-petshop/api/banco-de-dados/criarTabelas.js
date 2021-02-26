@@ -1,4 +1,4 @@
-const ModeloTabela = require('../rotas/fornecedores/ModeloTabelaFornecedor')
+const ModeloTabela = require('../rotas/fornecedores/ModeloTabelaFornecedor.js')
 
 ModeloTabela
     .sync()         //sincronizar uma 'promessa'
