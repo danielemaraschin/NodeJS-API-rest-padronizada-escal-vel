@@ -6,7 +6,7 @@
     "mysql": {                               //com outro objeto dentro
         "banco-de-dados": "petshop",
         "usuario": "root",
-        "senha" :"123456" , 
+        "senha" :"admin" , 
         "host": "127.0.0.1"
     },
 
