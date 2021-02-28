@@ -15,3 +15,7 @@ const produtosEmJson = JSON.stringify(produtos)
 app.use('produto', (requisicao, resposta) => {
   resposta.send(produtosEmJson)
 })
+
+/*Com o código acima, quais alterações se deve 
+fazer para que a API possa fornecer
+uma lista de produtos?*/
