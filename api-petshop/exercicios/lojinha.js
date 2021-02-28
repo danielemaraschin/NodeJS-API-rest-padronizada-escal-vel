@@ -12,10 +12,25 @@ const produtos = [
 
 const produtosEmJson = JSON.stringify(produtos)
 
-app.use('produto', (requisicao, resposta) => {
+app.get('/api/produtos', (requisicao, resposta) => {
   resposta.send(produtosEmJson)
 })
 
 /*Com o código acima, quais alterações se deve 
 fazer para que a API possa fornecer
-uma lista de produtos?*/
+uma lista de produtos?
+
+
+Alterar o método: app.use() para app.get() e trocar a porção da URL para ‘/api/produtos’.
+
+
+Usamos o método get() para obter dados de uma API, 
+e quando estamos acessando uma URL com ‘/api’,
+sabemos que estamos usando uma API, e pela porção ‘/produtos’,
+ sabemos também que vamos obter dados de produtos - 
+como está no plural, sabemos que serão vários produtos.
+
+
+
+
+*/
