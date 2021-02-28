@@ -12,6 +12,6 @@ const produtos = [
 
 const produtosEmJson = JSON.stringify(produtos)
 
-app.use('produto’, (requisicao, resposta) => {
+app.use('produto', (requisicao, resposta) => {
   resposta.send(produtosEmJson)
 })
