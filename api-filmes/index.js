@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 //bodyParser é o plug-in para nosso app
 app.use(bodyParser.json())
 
-app.get(‘/api/filmes’, (requisicao, resposta) => {
+app.get('/api/filmes', (requisicao, resposta) => {
     const filmes = [
         { nome: 'Os Vingadores 3' },
         { nome: 'Destacamento Blood' },
