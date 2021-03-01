@@ -16,6 +16,10 @@ app.get('/api/produtos', (requisicao, resposta) => {
   resposta.send(produtosEmJson)
 })
 
+console.log(produtosEmJson);
+console.log(produtos);
+
+
 /*Com o código acima, quais alterações se deve 
 fazer para que a API possa fornecer
 uma lista de produtos?
