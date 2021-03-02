@@ -13,6 +13,7 @@ roteador.get('/', async (requisicao, resposta) => {     //async antes de declara
 
 roteador.post('/', (requisicao, resposta) => {
     const dadosRecebidos = requisicao.body
+    const fornecedor = new Fornecedor(dadosRecebidos)
 })
 
 module.exports = roteador
