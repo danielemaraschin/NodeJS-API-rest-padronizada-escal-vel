@@ -1,4 +1,4 @@
-const TabelaFornecedor = require('./TabelaFornecedor')
+const TabelaFornecedor = require('./TabelaFornecedor') //conecta com db
 
 class Fornecedor {
                                                                                             //METODO constructor 'constrói a classe' - parametro pode ser um objeto com os dados da classe (do fornecedor)
@@ -12,8 +12,17 @@ class Fornecedor {
         this.versao = versao;
     }
 
-    criar(){
+     async criar(){
+        const resultado = await TabelaFornecedor.inserir({
+            empresa: this.empresa,
+            email: this.email,
+            categoria: this.categoria
+        })
 
+        this.id = resultado.id
+        this.dataCriacao = resultado.dataCriacao
+        this.dataAtualizacao = resultado.dataAtualizacao
+        this.versao = resultado.versao
     }
 
 }
