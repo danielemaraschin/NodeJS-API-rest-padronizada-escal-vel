@@ -15,6 +15,9 @@ roteador.post('/', async (requisicao, resposta) => {
     const dadosRecebidos = requisicao.body
     const fornecedor = new Fornecedor(dadosRecebidos)
     await fornecedor.criar() //espera criar fornecedor para realizar a função async
+    resposta.send(
+        JSON.stringify(fornecedor)
+    )
 })
 
 module.exports = roteador
