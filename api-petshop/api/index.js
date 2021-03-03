@@ -1,5 +1,5 @@
 const express = require('express')      // precisamos usar o express para criar uma app
-const app = express()                   //precisamos de uma instancia do express
+const app = express()                //precisamos de uma instancia do express
 const bodyParser = require('body-parser')
 const config = require('config')
 
