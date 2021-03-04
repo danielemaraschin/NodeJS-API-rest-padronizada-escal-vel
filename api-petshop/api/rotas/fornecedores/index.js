@@ -20,9 +20,13 @@ roteador.post('/', async (requisicao, resposta) => {
     )
 })
 
-roteador.get('/:idFornecedor', (requisicao, resposta) => {
+roteador.get('/:idFornecedor', async (requisicao, resposta) => {
     const id = requisicao.params.idFornecedor
     const fornecedor = new Fornecedor({ id: id })
+    await fornecedor.carregar()
+    resposta.send(
+        JSON.stringify(fornecedor)
+    )
 })
 
 module.exports = roteador
