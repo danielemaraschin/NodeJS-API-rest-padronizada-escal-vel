@@ -25,7 +25,7 @@ class Fornecedor {
         this.versao = resultado.versao
     }
 
-    async carregar () {
+    async carregar () {     //async pq usaremos essa função para comunicaccao com db
         const encontrado = await TabelaFornecedor.pegarPorId(this.id)
         this.empresa = encontrado.empresa
         this.email = encontrado.email
