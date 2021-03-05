@@ -26,13 +26,32 @@ class Fornecedor {
     }
 
     async carregar () {     //async pq usaremos essa função para comunicaccao com db
-        const encontrado = await TabelaFornecedor.pegarPorId(this.id)
+        const encontrado = await TabelaFornecedor.pegarPorId(this.id) //verficar se existe fornecdor com esse id
         this.empresa = encontrado.empresa
         this.email = encontrado.email
         this.categoria = encontrado.categoria
         this.dataCriacao = encontrado.dataCriacao
         this.dataAtualizacao = encontrado.dataAtualizacao
         this.versao = encontrado.versao
+    }
+
+    async atualizar (){
+        await TabelaFornecedor.pegarPorId(this.id) // função já pronta no metodo carregar, só copiar
+        const campos = ['empresa' , 'email', 'categoria'] //campos que podemos alterar
+        const dadosParaAtualizar = {} // verifica se os campos foram fornecidos e sao validos
+
+        campos.forEach((campo) =>  {
+            const valor = this[campo]
+            if (typeof valor === 'string' && valor.length > 0) { //os campos, por acaso sao strings entao podemos usar isso pra verificar
+                dadosParaAtualizar[campo] = valor
+            } 
+        })
+        
+        if (Object.keys(dadosParaAtualizar).length === 0){
+            throw new Error('Não foram fornecidos dados para atualizar')
+        }
+
+        await TabelaFornecedor.atualizar(this.id, dadosParaAtualizar)
     }
 }
 module.exports = Fornecedor
