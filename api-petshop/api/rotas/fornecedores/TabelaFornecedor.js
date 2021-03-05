@@ -3,7 +3,7 @@ const Modelo = require('./ModeloTabelaFornecedor')
 
 module.exports = {          //exportar modulos q usamos na app através de um objeto
     listar () {             //listar esses módulos
-        return Modelo.findAll() //findAll é um metodo ingles do sequelize
+        return Modelo.findAll() //findAll é um metodo ingles do sequelize para encontrar tudo
     },
     
     inserir(fornecedor){
@@ -11,7 +11,7 @@ module.exports = {          //exportar modulos q usamos na app através de um ob
     },
 
     async pegarPorId (id) {
-        const encontrado = await Modelo.findOne({
+        const encontrado = await Modelo.findOne({ //metodo sequelize para encontrar 1
             where: {
                 id:id
             }
