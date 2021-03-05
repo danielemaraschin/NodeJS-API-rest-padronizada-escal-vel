@@ -37,4 +37,10 @@ roteador.get('/:idFornecedor', async (requisicao, resposta) => {
     }
 })
 
+roteador.put("/:idFornecedor", (requisicao, resposta) => {
+    const id = requisicao.params.idFornecedor
+    const dadosRecebidos = requisicao.body
+    
+})
+
 module.exports = roteador
