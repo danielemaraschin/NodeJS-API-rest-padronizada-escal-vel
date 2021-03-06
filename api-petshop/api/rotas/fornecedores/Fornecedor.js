@@ -38,16 +38,16 @@ class Fornecedor {
     async atualizar (){
         await TabelaFornecedor.pegarPorId(this.id) // função já pronta no metodo carregar, só copiar
         const campos = ['empresa' , 'email', 'categoria'] //campos que podemos alterar
-        const dadosParaAtualizar = {} // verifica se os campos foram fornecidos e sao validos
+        const dadosParaAtualizar = {} // verifica se os campos que podem ser alterados foram fornecidos e se foram,se sao validos
 
         campos.forEach((campo) =>  {
-            const valor = this[campo]
-            if (typeof valor === 'string' && valor.length > 0) { //os campos, por acaso sao strings entao podemos usar isso pra verificar
+            const valor = this[campo] //valor que esse campo representa (cada vez que passa pelo for)
+            if (typeof valor === 'string' && valor.length > 0) { //os campos,por acaso, sao strings entao podemos usar isso pra verificar && se a string não está vazia
                 dadosParaAtualizar[campo] = valor
             } 
         })
-        
-        if (Object.keys(dadosParaAtualizar).length === 0){
+                        //se dadosParaAtualizar tiver vazia, nao tem dados pra atualizar, nao precisa enviar dados pro db
+        if (Object.keys(dadosParaAtualizar).length === 0){ //funcao object.keys q retorna uma lista com o nome da chavez q esse obj possui
             throw new Error('Não foram fornecidos dados para atualizar')
         }
 

@@ -22,5 +22,14 @@ module.exports = {          //exportar modulos q usamos na app através de um ob
         }
 
         return encontrado
+    },
+
+    atualizar (id, dadosParaAtualizar) {
+        return Modelo.update(
+            dadosParaAtualizar, 
+            {
+                where: { id: id}    //atualizar os dados onde o id é o do fornecedor que queremos atualizar(p/atualizar os dados do fornecedor certo)
+            }
+        )
     }
 }
