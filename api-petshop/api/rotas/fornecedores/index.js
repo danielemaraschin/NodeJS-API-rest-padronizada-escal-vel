@@ -37,12 +37,15 @@ roteador.get('/:idFornecedor', async (requisicao, resposta) => {
     }
 })
 
-roteador.put("/:idFornecedor", (requisicao, resposta) => {
-    const id = requisicao.params.idFornecedor //pegar as info q está recebendo
-    const dadosRecebidos = requisicao.body  //pegar o corpo da requisição
-    const dados = Object.assign({}, dadosRecebidos, {id : id})    //juntar 2 objetos em 1 so para poder instanciar a classe fornecedor
-    const fornecedor = new Fornecedor(dados)   // instanciar a classe fornecedor, mas ela só aceita um objeto pra conseguir instanciar
-
+roteador.put("/:idFornecedor", async (requisicao, resposta) => {
+    try{
+        const id = requisicao.params.idFornecedor //pegar as info q está recebendo
+        const dadosRecebidos = requisicao.body  //pegar o corpo da requisição
+        const dados = Object.assign({}, dadosRecebidos, {id : id})    //juntar 2 objetos em 1 so para poder instanciar a classe fornecedor
+        const fornecedor = new Fornecedor(dados)   // instanciar a classe fornecedor, mas ela só aceita um objeto pra conseguir instanciar
+        await fornecedor.atualizar() //ao atualizar numa api rest não precisa retornar nada pra quem consome a api, so mostrar que a requisicao funcionou.
+        resposta.end()
+    }
 })
 
 module.exports = roteador
