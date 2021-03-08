@@ -21,6 +21,6 @@ app.post('/api/jogos', (requisicao, resposta) => {
 app.get('/api/jogos', (requisicao, resposta) => {
     
     resposta.send(JSON.stringify(requisicao.body))
-}
+})
 
 app.listen(3000, () => console.log('API está funcionando'))
