@@ -4,9 +4,21 @@ const bodyParser = require('body-parser')
 
 app.use(bodyParser.json())
 
+app.push()
 
-const jogosFavoritos = new Array ()
+const jogosFavoritos = [];
 
-jogosFavoritos.push('super mário');
+//usou metodo post p/inserir um jogo na lista
+app.post('api/jogos', (requisicao, resposta)=>{ 
+    try{
+        if(!requisicao.body.nome || !require.body.plataforma){
+        throw new Error ('campo inválido')
+        } 
+        jogosFavoritos.push(requisicao.body)
+        resposta.send(JSON.stringify(requisicao.body))
+    } catch(erro){
+        
+    }
+})
 
-console.log(jogosFavoritos)
+app.listen(3000, () => console.log('A API está funcionando!'))
