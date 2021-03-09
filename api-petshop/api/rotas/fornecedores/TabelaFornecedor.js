@@ -32,4 +32,10 @@ module.exports = {          //exportar modulos q usamos na app através de um ob
             }
         )
     }
+
+    remover(id) {
+        Modelo.destroy({
+            where: {id: id}
+        })
+    }
 }
