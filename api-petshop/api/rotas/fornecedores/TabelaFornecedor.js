@@ -31,9 +31,9 @@ module.exports = {          //exportar modulos q usamos na app através de um ob
                 where: { id: id}    //atualizar os dados onde o id é o do fornecedor que queremos atualizar(p/atualizar os dados do fornecedor certo)
             }
         )
-    }
+    },
 
-    remover(id) {
+    remover (id) {
         Modelo.destroy({
             where: {id: id}
         })

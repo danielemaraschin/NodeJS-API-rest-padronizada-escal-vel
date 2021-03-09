@@ -54,7 +54,7 @@ class Fornecedor {
         await TabelaFornecedor.atualizar(this.id, dadosParaAtualizar)
     }
 
-    remover() {
+    remover () {
         return TabelaFornecedor.remover(this.id)
     }
 }
