@@ -59,6 +59,7 @@ roteador.delete('/:idFornecedor', async (requisicao, resposta) => {
             const fornecedor = new Fornecedor({ id: id}) //unico parametro q temos é o id
             await fornecedor.carregar()
             await fornecedor.remover()
+            resposta.end()
     }catch(erro){
         resposta.send(
             JSON.stringify({
