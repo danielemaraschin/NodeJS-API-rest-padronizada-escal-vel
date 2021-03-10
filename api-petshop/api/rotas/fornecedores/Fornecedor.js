@@ -13,6 +13,7 @@ class Fornecedor {
     }
 
     async criar (){
+        this.validar()
         const resultado = await TabelaFornecedor.inserir({
             empresa: this.empresa,
             email: this.email,
