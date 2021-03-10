@@ -57,5 +57,17 @@ class Fornecedor {
     remover () {
         return TabelaFornecedor.remover(this.id)
     }
+
+    validar () {
+      const campos = ['empresa', 'email', 'categoria']  //esses são os campos obrigatorios- tb sei q é string
+
+      campos.forEach(campo => {
+          const valor = this [campo]
+
+          if (typeof valor !=='string' || valor.length === 0) {
+              throw new Error(`O campo '${campo}' está inválido`)
+          }
+      })
+    }
 }
 module.exports = Fornecedor
