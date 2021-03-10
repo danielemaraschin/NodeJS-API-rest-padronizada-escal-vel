@@ -67,7 +67,7 @@ roteador.delete('/:idFornecedor', async (requisicao, resposta) => {
             const fornecedor = new Fornecedor({ id: id}) //Instanciar a classe c/o unico parametro q temos desse obje é o id
             await fornecedor.carregar() //pegar id e verificar no db se existe
             await fornecedor.remover()
-            resposta.end()
+            resposta.end() //finalizar a requisicao
     }catch(erro){ //se o id não existir
         resposta.send(       //objeto  com a propriedade mensagem para
             JSON.stringify({// enviar a msg de erro pro usuario

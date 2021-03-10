@@ -55,7 +55,7 @@ class Fornecedor {
         await TabelaFornecedor.atualizar(this.id, dadosParaAtualizar)
     }
 
-    remover () { //
+    remover () { //metodo da classe fornecedor
         return TabelaFornecedor.remover(this.id)//tbForncedor é nosso obj pra se comunicar com o db
     }
 
