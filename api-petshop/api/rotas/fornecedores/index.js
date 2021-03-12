@@ -31,14 +31,14 @@ roteador.post('/', async (requisicao, resposta) => {
 })
 
 roteador.get('/:idFornecedor', async (requisicao, resposta) => {
-    try{                                                //tentar rodar esse código
+    try{      //tentar rodar esse código
         const id = requisicao.params.idFornecedor
         const fornecedor = new Fornecedor({ id: id })
         await fornecedor.carregar()
         resposta.send(
             JSON.stringify(fornecedor)
         )
-    }catch(erro){                                   //se tiver algum erro roda aki
+    }catch(erro){//se tiver algum erro roda aki
         resposta.send(              //envia resposta do erro pra qm está consumindo a API
             JSON.stringify({    //passar um objeto
                 mensagem: erro.message   //propriedade mensagem 
