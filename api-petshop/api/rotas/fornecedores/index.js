@@ -22,6 +22,7 @@ roteador.post('/', async (requisicao, resposta) => {
             JSON.stringify(fornecedor)
         )
     }catch (erro) {
+        resposta.status(400)
         resposta.send(
             JSON.stringify({
                 mensagem: erro.message
