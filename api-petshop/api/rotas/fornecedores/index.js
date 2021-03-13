@@ -60,6 +60,7 @@ roteador.put("/:idFornecedor", async (requisicao, resposta) => {
         resposta.status(204)
         resposta.end()
     } catch (erro) {
+        resposta.status(400)
         resposta.send(
             JSON.stringify({
                 mensagem: erro.message
