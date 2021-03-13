@@ -55,6 +55,7 @@ roteador.put("/:idFornecedor", async (requisicao, resposta) => {
         const dados = Object.assign({}, dadosRecebidos, {id : id})    //juntar 2 objetos em 1 so para poder instanciar a classe fornecedor
         const fornecedor = new Fornecedor(dados)   // instanciar a classe fornecedor, mas ela só aceita um objeto pra conseguir instanciar
         await fornecedor.atualizar() //ao atualizar numa api rest não precisa retornar nada pra quem consome a api, so mostrar que a requisicao funcionou.
+        resposta.status(204)
         resposta.end()
     } catch (erro) {
         resposta.send(
