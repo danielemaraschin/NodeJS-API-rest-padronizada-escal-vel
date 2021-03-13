@@ -35,6 +35,7 @@ roteador.get('/:idFornecedor', async (requisicao, resposta) => {
         const id = requisicao.params.idFornecedor
         const fornecedor = new Fornecedor({ id: id })
         await fornecedor.carregar()
+        resposta.status(200)
         resposta.send(
             JSON.stringify(fornecedor)
         )
