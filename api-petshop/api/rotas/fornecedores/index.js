@@ -77,6 +77,7 @@ roteador.delete('/:idFornecedor', async (requisicao, resposta) => {
             resposta.status(204)
             resposta.end() //finalizar a requisicao
     }catch(erro){ //se o id não existir
+        resposta.status(404)
         resposta.send(       //objeto  com a propriedade mensagem para
             JSON.stringify({// enviar a msg de erro pro usuario
             mensagem: erro.message
