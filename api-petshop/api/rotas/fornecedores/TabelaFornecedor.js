@@ -10,7 +10,8 @@ module.exports = {          //exportar modulos q usamos na app através de um ob
         return Modelo.create(fornecedor)    //método create do sequelize
     },
 
-    async pegarPorId (id) {
+    async 
+    pegarPorId (id) {
         const encontrado = await Modelo.findOne({ //metodo sequelize para encontrar 1
             where: {
                 id:id
