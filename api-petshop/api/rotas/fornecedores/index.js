@@ -69,6 +69,7 @@ roteador.put("/:idFornecedor", async (requisicao, resposta) => {
         resposta.send(
             JSON.stringify({
                 mensagem: erro.message
+                id: erro.idErro
             })
         )
     }
