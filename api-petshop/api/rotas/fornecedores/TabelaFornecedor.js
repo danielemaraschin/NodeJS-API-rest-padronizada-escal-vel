@@ -1,5 +1,5 @@
 const Modelo = require('./ModeloTabelaFornecedor')
-
+const NaoEncontrado = require('../../erros/NaoEncontrado')
 
 module.exports = {          //exportar modulos q usamos na app através de um objeto
     listar () {             //listar esses módulos
