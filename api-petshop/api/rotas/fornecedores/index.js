@@ -62,13 +62,13 @@ roteador.put("/:idFornecedor", async (requisicao, resposta) => {
         resposta.end()
     } catch (erro) {
         if(erro instanceof NaoEncontrado) { //erro é uma instancia de NAOENCONTRADO
-            resposta.status(404)    
+            resposta.status(404) //item nao encontrado ou nao existe   
         } else{
             resposta.status(400)
         }
         resposta.send(
             JSON.stringify({
-                mensagem: erro.message
+                mensagem: erro.message ,
                 id: erro.idErro
             })
         )
