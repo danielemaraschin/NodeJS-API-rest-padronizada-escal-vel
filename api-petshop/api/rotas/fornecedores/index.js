@@ -1,6 +1,7 @@
 const roteador = require('express').Router()
 const TabelaFornecedor = require('./TabelaFornecedor')
 const Fornecedor = require('./Fornecedor')
+const NaoEncontrado = require('../../erros/NaoEncontrado')
 
                                                        //metodo async-await pq é funcao de promessa
 roteador.get('/', async (requisicao, resposta) => {     //async antes de declarar a funcao
@@ -60,7 +61,11 @@ roteador.put("/:idFornecedor", async (requisicao, resposta) => {
         resposta.status(204)
         resposta.end()
     } catch (erro) {
-        resposta.status(400)
+        if(erro instanceof NaoEncontrado) { //erro é uma instancia de NAOENCONTRADO
+            resposta.status(404)    
+        } else{
+            resposta.status(400)
+        }
         resposta.send(
             JSON.stringify({
                 mensagem: erro.message

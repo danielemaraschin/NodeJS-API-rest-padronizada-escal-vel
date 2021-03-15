@@ -19,7 +19,7 @@ module.exports = {          //exportar modulos q usamos na app através de um ob
         })
     
         if (!encontrado){
-            throw new Error('Fornecedor não encontrado')
+            throw new NaoEncontrado()
         }
 
         return encontrado
