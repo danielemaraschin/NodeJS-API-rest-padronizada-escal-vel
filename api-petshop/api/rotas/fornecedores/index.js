@@ -44,7 +44,7 @@ roteador.get('/:idFornecedor', async (requisicao, resposta) => {
         resposta.status(404)
         resposta.send(              //envia resposta do erro pra qm está consumindo a API
             JSON.stringify({    //passar um objeto
-                mensagem: erro.message   //propriedade mensagem 
+                mensagem: erro.message   //propriedade mensagem - fornecedor nao encontrado 
             })
         )
     }
