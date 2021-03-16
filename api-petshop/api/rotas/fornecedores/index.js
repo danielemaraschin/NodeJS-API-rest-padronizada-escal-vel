@@ -51,7 +51,7 @@ roteador.get('/:idFornecedor', async (requisicao, resposta) => {
     }
 })
 
-roteador.put("/:idFornecedor", async (requisicao, resposta) => {
+roteador.put("/:idFornecedor", async (requisicao, resposta, proximo) => {
     try{
         const id = requisicao.params.idFornecedor //pegar as info q está recebendo
         const dadosRecebidos = requisicao.body  //pegar o corpo da requisição
@@ -61,17 +61,7 @@ roteador.put("/:idFornecedor", async (requisicao, resposta) => {
         resposta.status(204)
         resposta.end()
     } catch (erro) {
-        if(erro instanceof NaoEncontrado) { //erro é uma instancia de NAOENCONTRADO
-            resposta.status(404) //item nao encontrado ou nao existe   
-        } else{
-            resposta.status(400)
-        }
-        resposta.send(
-            JSON.stringify({
-                mensagem: erro.message,
-                id: erro.idErro
-            })
-        )
+        proximo(erro)
     }
 })
 
