@@ -1,7 +1,7 @@
 const roteador = require('express').Router()
 const TabelaFornecedor = require('./TabelaFornecedor')
 const Fornecedor = require('./Fornecedor')
-const NaoEncontrado = require('../../erros/NaoEncontrado')
+
 
                                                        //metodo async-await pq é funcao de promessa
 roteador.get('/', async (requisicao, resposta) => {     //async antes de declarar a funcao
