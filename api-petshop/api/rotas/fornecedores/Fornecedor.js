@@ -1,5 +1,6 @@
 const TabelaFornecedor = require('./TabelaFornecedor') //conecta com db
-const CampoInvalido = require('../../erros/CampoInvalido')
+const CampoInvalido = require('../../erros/CampoInvalido') //conecta com class de erros
+const DadosNaoFornecidos = require('../../erros/DadosNaoFornecidos')
 
 class Fornecedor {
                                                                                             //METODO constructor 'constrói a classe' - parametro pode ser um objeto com os dados da classe (do fornecedor)
@@ -50,7 +51,7 @@ class Fornecedor {
         })
                         //se dadosParaAtualizar tiver vazia, nao tem dados pra atualizar, nao precisa enviar dados pro db
         if (Object.keys(dadosParaAtualizar).length === 0){ //funcao object.keys q retorna uma lista com o nome da chavez q esse obj possui
-            throw new Error('Não foram fornecidos dados para atualizar')
+            throw new DadosNaoFornecidos()
         }
 
         await TabelaFornecedor.atualizar(this.id, dadosParaAtualizar)
