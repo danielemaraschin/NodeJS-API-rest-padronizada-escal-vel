@@ -3,6 +3,7 @@ const app = express() //precisamos de uma instancia do express
 const bodyParser = require('body-parser')
 const config = require('config')
 const NaoEncontrado = require('./erros/NaoEncontrado')
+const CampoInvalido = require('./erros/CampoInvalido')
 
 //bodyParser é o plug-in para nosso app
 app.use(bodyParser.json())
@@ -11,11 +12,15 @@ const roteador = require('./rotas/fornecedores')
 app.use('/api/fornecedores', roteador)
 
 app.use((erro, requisicao, resposta, proximo) => {
-    if(erro instanceof NaoEncontrado) { //erro é uma instancia de NAOENCONTRADO
-        resposta.status(404) //item nao encontrado ou nao existe   
-    } else{
-        resposta.status(400)
+    let status = 500
+
+    if(erro instanceof NaoEncontrado){              //erro é uma instancia de NAOENCONTRADO
+        status = 404                                //item nao encontrado ou nao existe   
     }
+    if(erro instanceof CampoInvalido){
+        status = 400
+    }
+    resposta.status(status)
     resposta.send(
         JSON.stringify({
             mensagem: erro.message,
