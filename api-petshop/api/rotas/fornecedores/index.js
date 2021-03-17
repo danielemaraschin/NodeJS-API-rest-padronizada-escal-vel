@@ -55,20 +55,15 @@ roteador.put("/:idFornecedor", async (requisicao, resposta, proximo) => {
     }
 })
 
-roteador.delete('/:idFornecedor', async (requisicao, resposta) => {
+roteador.delete('/:idFornecedor', async (requisicao, resposta, proximo) => {
     try{    const id = requisicao.params.idFornecedor //busca o id
             const fornecedor = new Fornecedor({ id: id}) //Instanciar a classe c/o unico parametro q temos desse obje é o id
             await fornecedor.carregar() //pegar id e verificar no db se existe
             await fornecedor.remover()
             resposta.status(204)
             resposta.end() //finalizar a requisicao
-    }catch(erro){ //se o id não existir
-        resposta.status(404) //fornecedor nao enco
-        resposta.send(       //objeto  com a propriedade mensagem para
-            JSON.stringify({// enviar a msg de erro pro usuario
-            mensagem: erro.message
-            })
-        )   
+    }catch(erro){    //se o id não existir
+        proximo(erro)
     }
 })
 
