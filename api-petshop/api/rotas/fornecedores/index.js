@@ -13,22 +13,17 @@ roteador.get('/', async (requisicao, resposta) => {     //async antes de declara
 })       
 
 
-roteador.post('/', async (requisicao, resposta) => {
+roteador.post('/', async (requisicao, resposta, proximo ) => {
     try{
         const dadosRecebidos = requisicao.body
         const fornecedor = new Fornecedor(dadosRecebidos)
-        await fornecedor.criar() //espera criar fornecedor para realizar a função async
-        resposta.status(201)//status de 'criado'
+        await fornecedor.criar()                                         //espera criar fornecedor para realizar a função async
+        resposta.status(201)                                        //status de 'criado'
         resposta.send(
             JSON.stringify(fornecedor)
         )
-    }catch (erro) {
-        resposta.status(400)
-        resposta.send(
-            JSON.stringify({
-                mensagem: erro.message
-            })
-        )
+    }catch (erro) {                                                 //variavel erro é uma instancia de campo invalido
+        proximo(erro)
     }
 })
 
