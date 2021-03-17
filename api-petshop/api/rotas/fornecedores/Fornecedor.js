@@ -1,4 +1,5 @@
 const TabelaFornecedor = require('./TabelaFornecedor') //conecta com db
+const CampoInvalido = require('../../erros/CampoInvalido')
 
 class Fornecedor {
                                                                                             //METODO constructor 'constrói a classe' - parametro pode ser um objeto com os dados da classe (do fornecedor)
@@ -60,13 +61,13 @@ class Fornecedor {
     }
 
     validar () {
-      const campos = ['empresa', 'email', 'categoria']  //esses são os campos obrigatorios- tb sei q é string
+      const campos = ['empresa', 'email', 'categoria']                              //esses são os campos obrigatorios- tb sei q é string
 
       campos.forEach(campo => {
           const valor = this [campo]
 
           if (typeof valor !=='string' || valor.length === 0) {
-              throw new Error(`O campo '${campo}' está inválido`)
+              throw new CampoInvalido(campo)
           }
       })
     }
