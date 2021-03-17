@@ -27,7 +27,7 @@ roteador.post('/', async (requisicao, resposta, proximo ) => {
     }
 })
 
-roteador.get('/:idFornecedor', async (requisicao, resposta) => {
+roteador.get('/:idFornecedor', async (requisicao, resposta, proximo) => {
     try{      //tentar rodar esse código
         const id = requisicao.params.idFornecedor
         const fornecedor = new Fornecedor({ id: id })
@@ -36,13 +36,8 @@ roteador.get('/:idFornecedor', async (requisicao, resposta) => {
         resposta.send(
             JSON.stringify(fornecedor)
         )
-    }catch(erro){//se tiver algum erro roda aki
-        resposta.status(404)
-        resposta.send(              //envia resposta do erro pra qm está consumindo a API
-            JSON.stringify({    //passar um objeto
-                mensagem: erro.message   //propriedade mensagem - fornecedor nao encontrado 
-            })
-        )
+    }catch(erro) {//se tiver algum erro roda aki
+        proximo(erro)
     }
 })
 
