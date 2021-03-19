@@ -22,6 +22,9 @@ app.use((erro, requisicao, resposta, proximo) => {
     if(erro instanceof CampoInvalido || erro instanceof DadosNaoFornecidos){
         status = 400
     }
+    if (erro instanceof ValorNaoSuportado){
+        status = 406 //status especifico quando o valor que o cliente está pedindo nao é suportado pela API
+    }
     resposta.status(status)
     resposta.send(
         JSON.stringify({
