@@ -5,6 +5,7 @@ const config = require('config')
 const NaoEncontrado = require('./erros/NaoEncontrado')
 const CampoInvalido = require('./erros/CampoInvalido')
 const DadosNaoFornecidos = require('./erros/DadosNaoFornecidos')
+const ValorNaoSuportado = require('./erros/ValorNaoSuportado')
 
 //bodyParser é o plug-in para nosso app
 app.use(bodyParser.json())
