@@ -6,4 +6,4 @@ class DadosNaoFornecidos extends Error {
     }
 }
 
-module.export = DadosNaoFornecidos
+module.exports = DadosNaoFornecidos
