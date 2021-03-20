@@ -1,7 +1,8 @@
 class UsuarioNaoEncontrado extends Error {
                              
-    constructor () {   
-        super('Usuário Não Encontrado')                                   
+    constructor (nome) {   
+        const mensagem = `O campo '${nome}' está inválido`
+        super(mensagem)                                  
         this.name = 'UsuarioNaoEncontrado'
         this.idErro = 0                                         
     }
