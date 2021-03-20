@@ -24,10 +24,10 @@ app.put('/api/usuarios/:idUsuario', async (requisicao, resposta, proximo) => {
 
         const usuario = new Usuario(Object.assign({}, dados, { id: id }))
         await usuario.atualizar()
-        resposta.status(200)
+        resposta.status(200)//eu coloquei mas na correção nao mexeu nessa pagina entao nao sei
         resposta.end()
     } catch (erro) {
-        resposta.status(404)
+        resposta.status(404) //eu coloquei mas na correção nao mexeu nessa pagina entao nao sei
         proximo(erro)
     }
 })
