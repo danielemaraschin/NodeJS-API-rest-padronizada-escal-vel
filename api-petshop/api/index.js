@@ -6,14 +6,21 @@ const NaoEncontrado = require('./erros/NaoEncontrado')
 const CampoInvalido = require('./erros/CampoInvalido')
 const DadosNaoFornecidos = require('./erros/DadosNaoFornecidos')
 const ValorNaoSuportado = require('./erros/ValorNaoSuportado')
+const formatosAceitos = require('./Serializador').formatosAceitos
 
 //bodyParser é o plug-in para nosso app
 app.use(bodyParser.json())
 
 app.use((requisicao, resposta, proximo) => { //header é um cabeçalho, pra saber qual o tipo de requisicao que o cliente da requisicao está aceitando
     const formatoRequisitado = requisicao.header('Accept') //cabeçalho 'accept' é aqueles valores que conseguimos passar fora do corpo no postman
-
-    if(formatoRequisitado === 'app')
+    //indexOf funcao do js que pergunta a posicao dentro da lista do array
+    if(formatosAceitos.indexOf(formatoRequisitado)=== -1 ){ //se resultado for -1 é pq não encontrou no array de formatos aceitos o formato requisitado
+        resposta.status(406)
+        resposta.end
+    }
+//definir nome cabeçalho(paramentro 1 é o nome do cabeçalho e o 2 é o conteudo)
+    resposta.setHeader('Content-Type', formatoRequisitado)
+    proximo()
 })
 
 const roteador = require('./rotas/fornecedores')
