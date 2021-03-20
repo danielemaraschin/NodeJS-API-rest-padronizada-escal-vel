@@ -10,6 +10,12 @@ const ValorNaoSuportado = require('./erros/ValorNaoSuportado')
 //bodyParser é o plug-in para nosso app
 app.use(bodyParser.json())
 
+app.use((requisicao, resposta, proximo) => { //header é um cabeçalho, pra saber qual o tipo de requisicao que o cliente da requisicao está aceitando
+    const formatoRequisitado = requisicao.header('Accept') //cabeçalho 'accept' é aqueles valores que conseguimos passar fora do corpo no postman
+
+    if(formatoRequisitado === 'app')
+})
+
 const roteador = require('./rotas/fornecedores')
 app.use('/api/fornecedores', roteador)
 
