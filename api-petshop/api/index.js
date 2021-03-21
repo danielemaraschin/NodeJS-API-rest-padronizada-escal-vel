@@ -12,11 +12,17 @@ const formatosAceitos = require('./Serializador').formatosAceitos
 app.use(bodyParser.json())
 
 app.use((requisicao, resposta, proximo) => { //header é um cabeçalho, pra saber qual o tipo de requisicao que o cliente da requisicao está aceitando
-    const formatoRequisitado = requisicao.header('Accept') //cabeçalho 'accept' é aqueles valores que conseguimos passar fora do corpo no postman
+    let formatoRequisitado = requisicao.header('Accept') //cabeçalho 'accept' é aqueles valores que conseguimos passar fora do corpo no postman
+    
+    if (formatoRequisitado === '*/*') {
+        formatoRequisitado = 'application/json'
+    }
+    
     //indexOf funcao do js que pergunta a posicao dentro da lista do array
-    if(formatosAceitos.indexOf(formatoRequisitado)=== -1 ){ //se resultado for -1 é pq não encontrou no array de formatos aceitos o formato requisitado
+    if (formatosAceitos.indexOf(formatoRequisitado)=== -1 ){ //se resultado for -1 é pq não encontrou no array de formatos aceitos o formato requisitado
         resposta.status(406)
         resposta.end
+        return
     }
 //definir nome cabeçalho(paramentro 1 é o nome do cabeçalho e o 2 é o conteudo)
     resposta.setHeader('Content-Type', formatoRequisitado)

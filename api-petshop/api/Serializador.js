@@ -1,6 +1,5 @@
 const ValorNaoSuportado = require('./erros/ValorNaoSuportado')
 
-
 class Serializador { //serializar (transformar) dados em json 
     json (dados) {
         return JSON.stringify(dados)
