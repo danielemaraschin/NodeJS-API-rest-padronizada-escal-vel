@@ -39,8 +39,11 @@ roteador.get('/:idFornecedor', async (requisicao, resposta, proximo) => {
         const fornecedor = new Fornecedor({ id: id })
         await fornecedor.carregar()
         resposta.status(200)
+        const Serializador = new SerializadorFornecedor(
+            resposta.getHeader('Content-Type')              
+        )
         resposta.send(
-            JSON.stringify(fornecedor)
+            serializador.serializar(fornecedor)
         )
     }catch(erro) {//se tiver algum erro roda aki
         proximo(erro)
