@@ -1,14 +1,17 @@
 const roteador = require('express').Router()
 const TabelaFornecedor = require('./TabelaFornecedor')
 const Fornecedor = require('./Fornecedor')
-
+const SerializadorFornecedor = require('../../Serializador').SerializadorFornecedor
 
                                                        //metodo async-await pq é funcao de promessa
 roteador.get('/', async (requisicao, resposta) => {     //async antes de declarar a funcao
     const resultados = await TabelaFornecedor.listar()  //funcao de promessa (assim como na funcao de criar tabelas)
-    resposta.status(200) //padrao express é 200 e get sempre 200 tb, mas vamos colocar so pra ficar mais claro no codigo
+    resposta.status(200)                                //padrao express é 200 e get sempre 200 tb, mas vamos colocar so pra ficar mais claro no codigo
+    const Serializador = new SerializadorFornecedor(
+        resposta.getHeader('Content-Type')               //1ro paramentro:'contentType' da resposta que ja foi definido nos formatos aceitos do header
+    )
     resposta.send(
-        JSON.stringify(resultados)
+        serializador.serializar(resultados)
     )                                
 })       
 
@@ -19,8 +22,11 @@ roteador.post('/', async (requisicao, resposta, proximo ) => {
         const fornecedor = new Fornecedor(dadosRecebidos)
         await fornecedor.criar()                                         //espera criar fornecedor para realizar a função async
         resposta.status(201)                                        //status de 'criado'
+        const Serializador = new SerializadorFornecedor(
+            resposta.getHeader('Content-Type')              
+        )
         resposta.send(
-            JSON.stringify(fornecedor)
+            serializador.serializar(fornecedor)
         )
     }catch (erro) {                                                 //variavel erro é uma instancia de campo invalido
         proximo(erro)
