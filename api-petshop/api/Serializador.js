@@ -17,10 +17,10 @@ class Serializador { //serializar (transformar) dados em json
 class SerializadorFornecedor extends Serializador {//quando instanciar a classe coloca no constructor
     constructor (contentType) { //usa a var contentType para verficar o tipo de conteudo que tá aceitando por isso declarar no constructor
         super()
-        this.contentType = contentType 
-
+        this.contentType = contentType
     }
 }
+
 module.exports = {
     Serializador: Serializador,
     SerializadorFornecedor: SerializadorFornecedor,
