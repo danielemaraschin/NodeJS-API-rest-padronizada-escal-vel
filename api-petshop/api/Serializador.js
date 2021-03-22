@@ -12,6 +12,15 @@ class Serializador { //serializar (transformar) dados em json
                                                     //emite esse erro se o formato não é possível 
         throw new ValorNaoSuportado(this.contentType) //de ser transformado em json
     }
+
+    filtrarObjetos (dados) { //quando listar os fornecedores não mostrar todos os dados
+        const novoObjeto = {}
+        const camposPublicos = [ 'id', 'empresa', 'categoria']
+        camposPublicos.forEach((campo)) => {
+            if (dados)
+        }
+
+    }
 }
 
 class SerializadorFornecedor extends Serializador {//quando instanciar a classe coloca no constructor
