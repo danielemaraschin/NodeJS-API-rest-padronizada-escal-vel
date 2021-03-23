@@ -16,10 +16,13 @@ class Serializador { //serializar (transformar) dados em json
     filtrarObjetos (dados) { //quando listar os fornecedores não mostrar todos os dados
         const novoObjeto = {}
         const camposPublicos = [ 'id', 'empresa', 'categoria']
-        camposPublicos.forEach((campo)) => {
-            if (dados)
-        }
-
+        
+        camposPublicos.forEach((campo) => {
+            if (dados.hasOwnProperty(campo)) {  //funcão pronta que retorna v/f
+                novoObjeto[campo] = dados[campo]
+            }
+        })
+            return novoObjeto
     }
 }
 
