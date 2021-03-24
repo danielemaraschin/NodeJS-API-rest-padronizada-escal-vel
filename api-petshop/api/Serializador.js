@@ -8,14 +8,14 @@ class Serializador { //serializar (transformar) dados em json
     serializar (dados){         //formato aceito é o 'application/json'
         if (this.contentType === 'application/json') { //verifica se o tipo de formato aceito é json
             return this.json(             //retorna os dados em json
-                this.filtrarObjetos(dados) //mas antes filtra pra retornar só os dados publicos
+                this.filtrar(dados) //mas antes filtra pra retornar só os dados publicos
             )
         }
                                                     //emite esse erro se o formato não é possível 
         throw new ValorNaoSuportado(this.contentType) //de ser transformado em json
     }
 
-    filtrarObjetos (dados) { //quando listar os fornecedores não mostrar todos os dados;
+    filtrarObjeto (dados) { //quando listar os fornecedores não mostrar todos os dados;
         const novoObjeto = {} //declara objeto vazio
         //camposPublicos está no constructor do serializadorFornecedor
         this.camposPublicos.forEach((campo) => { //itera em cada campo verificando se sao os campos publicos       
@@ -24,6 +24,16 @@ class Serializador { //serializar (transformar) dados em json
             }
         })
         return novoObjeto //retorna um objeto filtrado so com os campos publicos
+    }
+
+    filtrar (dados) {
+        if (Array.isArray(dados)) {                     //se 'dados' for um array fazer essa função
+            dados = dados.map(this.filtrarObjeto)      //map é como o forEach que passa em cada item do array fazendo uma função e com o resultado dela cria um novo array
+                                                        //a funcao filtrarObjetos já tem o forEach que processa esse objeto retornando um novo objeto com esse campos filtrados
+        } else {                                        //se 'dados' não for array sobreescreve dados por this.filtraObjetos(dados)
+            dados = this.filtrarObjeto(dados)
+        }
+        return dados
     }
 }
 
