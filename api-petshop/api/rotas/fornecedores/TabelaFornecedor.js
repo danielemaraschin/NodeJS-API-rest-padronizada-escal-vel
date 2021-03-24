@@ -1,9 +1,9 @@
 const Modelo = require('./ModeloTabelaFornecedor')
 const NaoEncontrado = require('../../erros/NaoEncontrado')
 
-module.exports = {          //exportar modulos q usamos na app através de um objeto
-    listar () {             //listar esses módulos
-        return Modelo.findAll() //findAll é um metodo ingles do sequelize para encontrar tudo
+module.exports = {                               //exportar modulos q usamos na app através de um objeto
+    listar () {                                  //listar esses módulos
+        return Modelo.findAll({ raw: true})      //findAll é um metodo do sequelize para encontrar tudo () E RETORNA como instancias do sequelize
     },
     
     inserir(fornecedor){
