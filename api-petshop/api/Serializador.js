@@ -27,10 +27,11 @@ class Serializador { //serializar (transformar) dados em json
     }
 
     filtrar (dados) {
-        if (Array.isArray(dados)) {                     //se 'dados' for um array fazer essa função
-            dados = dados.map(this.filtrarObjeto)      //map é como o forEach que passa em cada item do array fazendo uma função e com o resultado dela cria um novo array
-                                                        //a funcao filtrarObjetos já tem o forEach que processa esse objeto retornando um novo objeto com esse campos filtrados
-        } else {                                        //se 'dados' não for array sobreescreve dados por this.filtraObjetos(dados)
+        if (Array.isArray(dados)) {                  //se 'dados' for um array fazer essa função
+            dados = dados.map( item => {            //map é como o forEach que passa em cada item do array fazendo uma função e com o resultado dela cria um novo array
+                return this.filtrarObjeto(item)         //a funcao filtrarObjetos já tem o forEach que processa esse objeto retornando um novo objeto com esse campos filtrados
+            })
+            } else {                                        //se 'dados' não for array sobreescreve dados por this.filtraObjetos(dados)
             dados = this.filtrarObjeto(dados)
         }
         return dados
