@@ -40,14 +40,14 @@ class Serializador { //serializar (transformar) dados em json
 
 
 class SerializadorFornecedor extends Serializador {//quando instanciar a classe coloca no constructor
-    constructor (contentType) { //usa a var contentType para verficar o tipo de conteudo que tá aceitando por isso declarar no constructor
+    constructor (contentType, camposExtras) { //usa a var contentType para verficar o tipo de conteudo que tá aceitando por isso declarar no constructor
         super()
         this.contentType = contentType
         this.camposPublicos = [ //mostrar somente os dados/propriedades publicas
             'id', 
             'empresa', 
             'categoria'
-        ] 
+        ].concat(camposExtras || []) //pra nao dar indefined em campos extras colocar || [] (= OU uma lista vazia)
     }
 }
 
