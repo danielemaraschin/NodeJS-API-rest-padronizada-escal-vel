@@ -52,7 +52,7 @@ class SerializadorFornecedor extends Serializador {//quando instanciar a classe 
 }
 
 class SerializadorErro extends Serializador {
-    constructor (contentType){
+    constructor (contentType, camposExtras){
         super()
         this.contentType = contentType
         this.camposPublicos = [ 
