@@ -47,8 +47,8 @@ class SerializadorFornecedor extends Serializador {//quando instanciar a classe 
             'id', 
             'empresa', 
             'categoria'
-        ].concat(camposExtras || []) //pra nao dar indefined em campos extras colocar || [] (= OU uma lista vazia)
-    }
+        ].concat(camposExtras || []) //pra nao dar indefined em campos extras caso não seja atribuido nenhum valor, colocar || [] que é = OU uma lista vazia.
+    }//esses campos extras são para a rota get/idFornecedor pq nessa rota queremos todos os detalhes do fornecedor, nao so os campos publicos
 }
 
 module.exports = {

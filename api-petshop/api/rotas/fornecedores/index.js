@@ -2,6 +2,7 @@ const roteador = require('express').Router()
 const TabelaFornecedor = require('./TabelaFornecedor')
 const Fornecedor = require('./Fornecedor')
 const SerializadorFornecedor = require('../../Serializador').SerializadorFornecedor
+const CampoInvalido = require('../../erros/CampoInvalido')
 
                                                        //metodo async-await pq é funcao de promessa
 roteador.get('/', async (requisicao, resposta) => {     //async antes de declarar a funcao
@@ -33,14 +34,15 @@ roteador.post('/', async (requisicao, resposta, proximo ) => {
     }
 })
 
-roteador.get('/:idFornecedor', async (requisicao, resposta, proximo) => {
+roteador.get('/:idFornecedor', async (requisicao, resposta, proximo) => { //queremos TODOS os campos do fornecedor
     try{      //tentar rodar esse código
         const id = requisicao.params.idFornecedor
         const fornecedor = new Fornecedor({ id: id })
         await fornecedor.carregar()
         resposta.status(200)
         const serializador = new SerializadorFornecedor(
-            resposta.getHeader('Content-Type')              
+            resposta.getHeader('Content-Type'),
+            ['email', 'dataCriacao', 'dataAtualizacao', 'versao']//nessa lista colocar os campos extras que queremos
         )
         resposta.send(
             serializador.serializar(fornecedor)
