@@ -51,8 +51,20 @@ class SerializadorFornecedor extends Serializador {//quando instanciar a classe 
     }//esses campos extras são para a rota get/idFornecedor pq nessa rota queremos todos os detalhes do fornecedor, nao so os campos publicos
 }
 
+class SerializadorErro extends Serializador {
+    constructor (contentType){
+        super()
+        this.contentType = contentType
+        this.camposPublicos = [ 
+            'id', 
+            'mensagem'
+        ].concat(camposExtras || [])
+    }
+}
+
 module.exports = {
     Serializador: Serializador,
     SerializadorFornecedor: SerializadorFornecedor,
+    SerializadorErro: SerializadorErro,
     formatosAceitos: ['application/json']
 }
