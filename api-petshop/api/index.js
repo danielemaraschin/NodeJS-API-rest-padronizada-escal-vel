@@ -25,7 +25,7 @@ app.use((requisicao, resposta, proximo) => { //header é um cabeçalho, pra sabe
         resposta.end
         return
     }
-//definir nome cabeçalho(paramentro 1 é o nome do cabeçalho e o 2 é o conteudo)
+//definir nome cabeçalho(paramentro 1 é o nome do cabeçalho 'content-Type'nesse caso e o 2 é o conteudo)
     resposta.setHeader('Content-Type', formatoRequisitado)
     proximo()
 })
@@ -45,9 +45,13 @@ app.use((erro, requisicao, resposta, proximo) => {
     if (erro instanceof ValorNaoSuportado){
         status = 406 //status especifico quando o valor que o cliente está pedindo nao é suportado pela API
     }
+
+    const serializador = new SerializadorErro( //colocar o tipo d cabeçalho aceito na resposta
+        resposta.getHeader('Content-Type')
+    )
     resposta.status(status)
     resposta.send(
-        JSON.stringify({
+        serializador.serializar({
             mensagem: erro.message,
             id: erro.idErro
         })
