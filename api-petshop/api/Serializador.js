@@ -7,7 +7,17 @@ class Serializador { //serializar (transformar) dados em json
     }
 
     xml(dados) { //instalar a biblioteca jsontoxml e chamara pelo require
-        return jsontoxml ({ [this.tag]: dados}) //precisa ter uma tag pra agrupar todos os dados
+        let tag = this.tagSingular
+
+        if(Array.isArray(dados)) {
+            tag = this.tagPlural //assim a lista vai se chamar 'fornecedores'
+            dados = dados.map((item) => { // desse jeito cada fornecedor estará separado <fornecedor> de outro fornecedor
+                return {
+                    [ this.tagSingular] : item
+                }
+            })
+        }
+        return jsontoxml ({ [tag]: dados}) //precisa ter uma tag pra agrupar todos os dados
 
     }
     serializar(dados) {         //formato aceito é o 'application/json' e 'application/xml'
@@ -54,7 +64,8 @@ class SerializadorFornecedor extends Serializador {//quando instanciar a classe 
             'empresa',
             'categoria'
         ].concat(camposExtras || []) //pra nao dar indefined em campos extras caso não seja atribuido nenhum valor, colocar || [] que é = OU uma lista vazia.
-        this.tag = 'fornecedor'
+        this.tagSingular = 'fornecedor'
+        this.tagPlural = 'fornecedores'
     }//esses campos extras são para a rota get/idFornecedor pq nessa rota queremos todos os detalhes do fornecedor, nao so os campos publicos
 }
 
@@ -66,7 +77,8 @@ class SerializadorErro extends Serializador {
             'id',
             'mensagem'
         ].concat(camposExtras || [])
-        this.tag = 'erro'
+        this.tagSingular = 'erro'
+        this.tagPlural = 'erros'
     }
 }
 
