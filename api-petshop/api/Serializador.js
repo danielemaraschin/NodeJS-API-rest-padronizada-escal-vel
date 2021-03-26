@@ -54,6 +54,7 @@ class SerializadorFornecedor extends Serializador {//quando instanciar a classe 
             'empresa',
             'categoria'
         ].concat(camposExtras || []) //pra nao dar indefined em campos extras caso não seja atribuido nenhum valor, colocar || [] que é = OU uma lista vazia.
+        this.tag = 'fornecedor'
     }//esses campos extras são para a rota get/idFornecedor pq nessa rota queremos todos os detalhes do fornecedor, nao so os campos publicos
 }
 
@@ -65,6 +66,7 @@ class SerializadorErro extends Serializador {
             'id',
             'mensagem'
         ].concat(camposExtras || [])
+        this.tag = 'erro'
     }
 }
 
