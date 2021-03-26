@@ -66,5 +66,5 @@ module.exports = {
     Serializador: Serializador,
     SerializadorFornecedor: SerializadorFornecedor,
     SerializadorErro: SerializadorErro,
-    formatosAceitos: ['application/json']
+    formatosAceitos: ['application/json', 'application/xml']
 }
