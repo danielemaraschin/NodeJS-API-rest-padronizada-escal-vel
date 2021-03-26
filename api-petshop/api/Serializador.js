@@ -1,11 +1,13 @@
 const ValorNaoSuportado = require('./erros/ValorNaoSuportado')
+const jsontoxml = require('jsontoxml')
 
 class Serializador { //serializar (transformar) dados em json 
     json(dados) {
         return JSON.stringify(dados)
     }
 
-    xml(dados) { //
+    xml(dados) { //instalar a biblioteca jsontoxml e chamara pelo require
+        return jsontoxml ({ [this.tag]: dados}) //precisa ter uma tag pra agrupar todos os dados
 
     }
     serializar(dados) {         //formato aceito é o 'application/json' e 'application/xml'
