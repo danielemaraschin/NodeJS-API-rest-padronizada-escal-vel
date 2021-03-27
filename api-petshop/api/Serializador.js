@@ -56,18 +56,18 @@ class Serializador { //serializar (transformar) dados em json
 
 
 class SerializadorFornecedor extends Serializador {//quando instanciar a classe coloca no constructor
-    constructor(contentType, camposExtras) { //usa a var contentType para verficar o tipo de conteudo que tá aceitando por isso declarar no constructor
+    constructor(contentType, camposExtras) {//usa var contentType para verficar tipo de conteudo aceito entao declarar no constructor
         super()
         this.contentType = contentType
         this.camposPublicos = [ //mostrar somente os dados/propriedades publicas
             'id',
             'empresa',
             'categoria'
-        ].concat(camposExtras || []) //pra nao dar indefined em campos extras caso não seja atribuido nenhum valor, colocar || [] que é = OU uma lista vazia.
-        this.tagSingular = 'fornecedor'
+        ].concat(camposExtras || []) //pra nao dar indefined em campos extras caso não seja atribuido nenhum valor, 
+        this.tagSingular = 'fornecedor' //colocar || [] que é = OU uma lista vazia.
         this.tagPlural = 'fornecedores'
-    }//esses campos extras são para a rota get/idFornecedor pq nessa rota queremos todos os detalhes do fornecedor, nao so os campos publicos
-}
+    }                               //esses campos extras são para a rota get/idFornecedor pq nessa rota
+}                            // queremos todos os detalhes do fornecedor, nao so os campos publicos
 
 class SerializadorErro extends Serializador {
     constructor(contentType, camposExtras) {
