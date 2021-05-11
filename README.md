@@ -1,1 +1,1 @@
-﻿# NodeJS-API-rest-padronizada-escalavel
+﻿# NodeJS-API-rest-standardized-scalable
